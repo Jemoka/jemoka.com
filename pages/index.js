@@ -1,21 +1,58 @@
-import Link from "next/link";
+import Router from 'next/router'
 import styles from "../styles/Home.module.css";
+
+import { useSpring, animated } from 'react-spring'
 
 function InfoBar() {
     return (
         <div className={styles.infobar}>
+          <span id="uname">jemoka</span>
           <span id="name">Houjun Liu</span>
         </div>
     );
 }
 
 function MainNav() {
+    const [ps, psAPI] = useSpring(() => ({ width: "25vw" }));
+    const [rs, rsAPI] = useSpring(() => ({ width: "25vw" }));
+    const [prods, prodsAPI] = useSpring(() => ({ width: "25vw" }));
+    const [as, asAPI] = useSpring(() => ({ width: "25vw" }));
+
+    console.log(ps);
+
     return (
         <div className={styles.navbar}>
-          <span className={styles.navbaritem} id={styles.projects}><Link href="/projects">Projects</Link></span>
-          <span className={styles.navbaritem} id={styles.research}><Link href="/research">Research</Link></span>
-          <span className={styles.navbaritem} id={styles.production}><Link href="/production">Production</Link></span>
-          <span className={styles.navbaritem} id={styles.about}><Link href="/about">About</Link></span>
+          <animated.span className={styles.navbaritem} id={styles.projects} style={ps}
+                         onMouseEnter={() => psAPI.start({width: "40vw"})}
+                         onMouseLeave={() => psAPI.start({width: "25vw"})}
+                         onClick={()=> {
+                             psAPI.start({width: "400vw"});
+                             Router.push("/projects");
+                         }}><a>Projects</a></animated.span>
+
+          <animated.span className={styles.navbaritem} id={styles.research} style={rs}
+                         onMouseEnter={() => rsAPI.start({width: "40vw"})}
+                         onMouseLeave={() => rsAPI.start({width: "25vw"})}
+                         onClick={()=> {
+                             rsAPI.start({width: "400vw"});
+                             Router.push("/research");
+                         }}><a>Research</a></animated.span>
+
+          <animated.span className={styles.navbaritem} id={styles.production} style={prods}
+                         onMouseEnter={() => prodsAPI.start({width: "40vw"})}
+                         onMouseLeave={() => prodsAPI.start({width: "25vw"})}
+                         onClick={()=> {
+                             prodsAPI.start({width: "400vw"});
+                             Router.push("/production");
+                         }}><a>Production</a></animated.span>
+
+          <animated.span className={styles.navbaritem} id={styles.about} style={as}
+                         onMouseEnter={() => asAPI.start({width: "40vw"})}
+                         onMouseLeave={() => asAPI.start({width: "25vw"})}
+                         onClick={()=> {
+                             asAPI.start({width: "400vw"});
+                             Router.push("/production");
+                         }}><a>About</a></animated.span>
         </div>
     );
 }
