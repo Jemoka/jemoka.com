@@ -31,6 +31,13 @@
     font-size: 35px;
     height: 25vh;
 
+    background-position: right top; 
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    mix-blend-mode: normal !important;
+
+
     @screen md {
         width: 25vw;
         font-size: 37px;
@@ -54,28 +61,42 @@
 .navbaritem > a {
     border-bottom: solid 10px;
     line-height: 60px;
+
 }
 
 .navbaritem#projects {
     color: white;
-    background: var(--green);
+    background-color: var(--green);
+}
+
+.navbaritem#projects:hover {
+    background-image: url("./Projects.gif");
 }
 
 .navbaritem#research {
     color: var(--darkblue);
-    background: var(--blue);
+    background-color: var(--blue);
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.navbaritem#research:hover {
+    background-image: url("./Research.gif");
 }
 
 .navbaritem#production {
     color: var(--lightred);
-    background: var(--red);
+    background-color: var(--red);
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+
+.navbaritem#production:hover {
+    background-image: url("./Production.gif");
 }
 
 .navbaritem#about {
     color: var(--brown);
-    background: var(--yellow);
+    background-color: var(--yellow);
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
 }
 
