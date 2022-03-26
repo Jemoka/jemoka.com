@@ -12,19 +12,44 @@
     height: 100%;
     background: linear-gradient(90deg, var(--green) 50%, var(--yellow) 50%);
 
+    flex-direction: column;
+
+    @screen md {
+        flex-direction: row;
+    }
+
     @apply justify-between;
 }
 
 .navbaritem {
-    width: 25vw;
-    font-weight: 700;
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: skew(-10deg);
-    font-size: 50px;
     cursor: pointer;
+    font-weight: 700;
+
+    font-size: 35px;
+    height: 25vh;
+
+    @screen md {
+        width: 25vw;
+        font-size: 37px;
+        transform: skew(-10deg);
+    }
+
+    @screen lg {
+        font-size: 45px;
+    }
+
+    @media only screen and (max-width: 768px) {
+        width: 100% !important;
+    }
+
+    @media only screen and (min-width: 768px) {
+        height: 100% !important;
+    }
 }
+
 
 .navbaritem > a {
     border-bottom: solid 10px;
