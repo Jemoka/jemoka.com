@@ -6,8 +6,10 @@ import { useSpring, animated } from 'react-spring'
 function InfoBar() {
     return (
         <div className={styles.infobar}>
-          <span id="uname">jemoka</span>
-          <span id="name">Houjun Liu</span>
+          <span id="uname">jemoka.com</span>
+          <span>
+            <span id="name" className="font-bold">Houjun Liu</span>
+          </span>
         </div>
     );
 }
