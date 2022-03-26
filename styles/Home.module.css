@@ -39,16 +39,19 @@
 .navbaritem#research {
     color: var(--darkblue);
     background: var(--blue);
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .navbaritem#production {
     color: var(--lightred);
     background: var(--red);
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .navbaritem#about {
     color: var(--brown);
     background: var(--yellow);
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
 }
 
 

@@ -1,7 +1,7 @@
-import Router from 'next/router'
+import Router from 'next/router';
 import styles from "../styles/Home.module.css";
 
-import { useSpring, animated } from 'react-spring'
+import { useSpring, animated } from 'react-spring';
 
 function InfoBar() {
     return (
