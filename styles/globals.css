@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities; 
 
+* {
+    --blue: #C9F0FF;
+    --darkblue: #153243;
+    --lighterdarkblue: #28536B;
+    --red: #F05D5E;
+    --green: #40B57A;
+    --yellow: #FFE66D;
+    --brown: #302908;
+    --grey: #686868;
+}
+
 html,
 body {
   padding: 0;
