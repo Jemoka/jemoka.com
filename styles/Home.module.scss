@@ -71,6 +71,7 @@
 
 .navbaritem#projects:hover {
     background-image: url("./Projects.gif");
+    background-size: cover;
 }
 
 .navbaritem#research {
@@ -81,6 +82,7 @@
 
 .navbaritem#research:hover {
     background-image: url("./Research.gif");
+    background-size: cover;
 }
 
 .navbaritem#production {
@@ -92,6 +94,7 @@
 
 .navbaritem#production:hover {
     background-image: url("./Production.gif");
+    background-size: cover;
 }
 
 .navbaritem#about {
@@ -113,6 +116,7 @@
     flex-direction: column;
     justify-content: center;
     padding: 20px;
+    margin-top: 20px;
 }
 
 

@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Router from 'next/router';
 import styles from "../styles/Home.module.scss";
 
@@ -10,6 +11,13 @@ function InfoBar() {
           <span>
             <span id="name" className="font-bold">Houjun Liu</span>
           </span>
+
+          <div id="socialpanel">
+            <a href="https://www.jemoka.com/search/" className="header-social" id="header-search"><i className="ic fa-solid fa-magnifying-glass" /></a>
+            <a href="https://github.com/Jemoka/" className="header-social" id="header-github"><i className="ic fa-brands fa-github" /></a>
+            <a href="https://twitter.com/jemokajack" className="header-social" id="header-twitter"><i className="ic fa-brands fa-twitter" /></a>
+            <a href="https://www.reddit.com/user/Jemoka/" className="header-social" id="header-reddit"><i className="ic fa-brands fa-reddit" /></a>
+          </div>
         </div>
     );
 }
@@ -25,27 +33,27 @@ function MainNav() {
     return (
         <div className={styles.navbar}>
           <animated.span className={styles.navbaritem} id={styles.projects} style={ps}
-                         onMouseEnter={() => psAPI.start({width: "40vw", height: "40vh", mixBlendMode:"exclusion"})}
+                         onMouseEnter={() => psAPI.start({width: "40vw", height: "40vh", mixBlendMode:"normal"})}
                          onMouseLeave={() => psAPI.start({width: "25vw", height: "25vh", mixBlendMode:"normal"})}
                          onClick={()=> {
                              psAPI.start({width: "1000vw", height: "400vh"});
-                             Router.push("/projects");
+                             Router.push("https://www.jemoka.com/posts/kbhprojects/");
                          }}><animated.a style={{mixBlendMode: ps.mixBlendMode}}>Projects</animated.a></animated.span>
 
           <animated.span className={styles.navbaritem} id={styles.research} style={rs}
-                         onMouseEnter={() => rsAPI.start({width: "40vw", height: "40vh", mixBlendMode:"exclusion"})}
+                         onMouseEnter={() => rsAPI.start({width: "40vw", height: "40vh", mixBlendMode:"normal"})}
                          onMouseLeave={() => rsAPI.start({width: "25vw", height: "25vh", mixBlendMode:"normal"})}
                          onClick={()=> {
                              rsAPI.start({width: "1000vw", height: "400vh"});
-                             Router.push("/research");
+                             Router.push("https://www.jemoka.com/posts/kbhresearch_index/");
                          }}><animated.a style={{mixBlendMode: rs.mixBlendMode}}>Research</animated.a></animated.span>
 
           <animated.span className={styles.navbaritem} id={styles.production} style={prods}
-                         onMouseEnter={() => prodsAPI.start({width: "40vw", height: "40vh", mixBlendMode:"exclusion"})}
+                         onMouseEnter={() => prodsAPI.start({width: "40vw", height: "40vh", mixBlendMode:"normal"})}
                          onMouseLeave={() => prodsAPI.start({width: "25vw", height: "25vh", mixBlendMode:"normal"})}
                          onClick={()=> {
                              prodsAPI.start({width: "1000vw", height: "400vh"});
-                             Router.push("/production");
+                             Router.push("https://www.jemoka.com/posts/kbhproduction_index/");
                          }}><animated.a style={{mixBlendMode: prods.mixBlendMode}}>Production</animated.a></animated.span>
 
           <animated.span className={styles.navbaritem} id={styles.about} style={as}
@@ -53,7 +61,7 @@ function MainNav() {
                          onMouseLeave={() => asAPI.start({width: "25vw", height: "25vh"})}
                          onClick={()=> {
                              asAPI.start({width: "1000vw", height: "400vh"});
-                             Router.push("/production");
+                             Router.push("https://www.jemoka.com/posts/kbhindex/");
                          }}><animated.a style={{mixBlendMode: as.mixBlendMode}}>About</animated.a></animated.span>
         </div>
     );
@@ -62,6 +70,12 @@ function MainNav() {
 export default function Home() {
     return (
         <div className={styles.home}>
+          <Head>
+            <link rel="preload" href="./Research.gif" as="image"/>
+            <link rel="preload" href="./Production.gif" as="image"/>
+            <link rel="preload" href="./Projects.gif" as="image"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossOrigin="anonymous" referrerpolicy="no-referrer" />
+          </Head>
           <MainNav />
           <InfoBar />
         </div>
