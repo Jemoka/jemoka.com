@@ -1,0 +1,52 @@
+.hero {
+    // take up the whole screen
+    width: 100vw;
+    height: 100vh;
+
+    // center child
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    // Position relative
+    position: relative;
+}
+
+// Styling the text
+.heroText {
+    font-weight: 800;
+    font-size: max(4vw, 50px);
+}
+
+// And the actual text
+.heroCenterText {
+    color: white;
+    position: absolute;
+    z-index: 10;
+    transform: translateX(-10vw) translateY(-5vw) skew(-5deg);
+}
+
+// Styling the background animator
+.heroBg {
+    background-color: var(--green);
+    color: var(--green);
+    position: absolute;
+    transform-origin: -100% 50%;
+    transform: translateX(-10vw) translateY(-5vw) skew(-5deg) scaleX(0.1);
+}
+
+// set styles
+.caret {
+    font-size: 25px;
+    max-width: 10px;
+    transform: translateX(130px) translateY(7px);
+    animation: blinker 1.5s linear infinite;
+    opacity: 0;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0.7;
+  }
+}
+
