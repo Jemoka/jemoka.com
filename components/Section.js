@@ -24,7 +24,8 @@ export default function Section(props) {
     // ref to cavas
     const canvasRef = useRef(null);
 
-    // spring to blur
+    // spring to blur, slight difference to make it act later
+    const canvasStyle = useSpring({filter: `blur(${0.7*(getFrame/(props.frameCount*1.25))}em)`});
 
     // Image fetch utility
     const currentFrame = index => (
@@ -110,7 +111,7 @@ export default function Section(props) {
               {props.name}
             </h1>
           </div>
-          <canvas ref={canvasRef} className={styles.canvas}/>
+          <animated.canvas ref={canvasRef} className={styles.canvas} style={canvasStyle}/>
         </div>
     );
 }
