@@ -6,12 +6,14 @@ export default function Projects() {
         <div>
           <Hero tab="Projects" color="white" backgroundColor="var(--green)"/>
           <Section
+            id="condution"
             name="The Condution Project."
             position="Co-Founder, Core Developer"
             variant="right"
             sequence="/sequences/Condution"
             frameCount={48}
           />
+
           <div>ho</div>
         </div>
     );

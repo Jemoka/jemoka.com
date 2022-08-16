@@ -24,13 +24,27 @@
 .sectionCall {
     font-size: min(13vw, 150px);
     font-weight: 700;
-    line-height: 1;
+    line-height: 1.1;
     padding-right: 5vw;
-    color: #434d5f;
+
+    background-size: 100%;
+    padding-left: 5vw;
+
+    width: 100%;
+    height: 50%;
+
+    // background: rgba(white, 0.1);
+    // backdrop-filter: blur(50px);
 }
 
 .sectionSub {
     display: none;
     // display: inline;
     font-weight: 600;
+}
+
+.hide {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
 }

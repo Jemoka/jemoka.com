@@ -25,7 +25,13 @@ export default function Section(props) {
     const canvasRef = useRef(null);
 
     // spring to blur, slight difference to make it act later
-    const canvasStyle = useSpring({filter: `blur(${0.7*(getFrame/(props.frameCount*1.25))}em)`});
+    const canvasStyle = useSpring({filter: `blur(${0.4*(getFrame/(props.frameCount*1.25))}em)`});
+    // spring to blur text, shifted to make it blur much later
+    const delayBlur = Math.max(((getFrame-props.frameCount*0.5)/(props.frameCount-props.frameCount*0.5)), 0);
+    const blurStyle = useSpring({
+        backdropFilter: `blur(${40*delayBlur}px)`,
+        backgroundColor: `rgba(255,255,255, ${0.5*delayBlur})`,
+    });
 
     // Image fetch utility
     const currentFrame = index => (
@@ -44,7 +50,7 @@ export default function Section(props) {
         img.src = currentFrame(1);
         img.onload = () => {
             context.drawImage(img, 0, 0, img.width, Math.max(Math.min((img.width/canvas.width)*canvas.height, img.height)),
-                                    0, 0, canvas.width, canvas.height);
+                              0, 0, canvas.width, canvas.height);
         };
 
         setHeight(canvas.offsetHeight);
@@ -73,7 +79,7 @@ export default function Section(props) {
             // if nothing shown, its 0; if all of it has been shown, its
             // the height
             const shown = Math.min(Math.max(scrollBottom-getPos(canvas).y, 0),
-                                  canvas.offsetHeight);
+                                   canvas.offsetHeight);
             // calculate percentage shown
             const scrollFraction = shown/canvas.offsetHeight;
             // get frame
@@ -89,7 +95,7 @@ export default function Section(props) {
             // calculate scale-appropriate height
             img.onload = () => {
                 context.drawImage(img, 0, 0, img.width, Math.min((img.width/canvas.width)*canvas.height, img.height),
-                                       0, 0, canvas.width, canvas.height);
+                                  0, 0, canvas.width, canvas.height);
             };
 
         };
@@ -106,10 +112,18 @@ export default function Section(props) {
         <div className={styles.section}>
           <div className={styles.content} style={{height, justifyContent: props.variant}}>
             <div className={styles.sectionSub}>{props.position}</div>
-            <h1 className={styles.sectionCall}
-                style={{textAlign: props.variant}}>
-              {props.name}
-            </h1>
+            <animated.h1 className={styles.sectionCall}
+                style={{textAlign: props.variant,
+                        clipPath: `url(#${props.id})`,
+                       ...blurStyle}}>
+              <div className={styles.hide}>{props.name}</div>
+              <svg aria-hidden="true" className={styles.hide}>
+                <clipPath id={props.id}>
+                  <text dominantBaseline="hanging" textAnchor="middle" >{props.name}</text>
+                </clipPath>
+              </svg>
+
+            </animated.h1>
           </div>
           <animated.canvas ref={canvasRef} className={styles.canvas} style={canvasStyle}/>
         </div>
