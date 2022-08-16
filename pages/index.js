@@ -71,10 +71,10 @@ export default function Home() {
     return (
         <div className={styles.home}>
           <Head>
-            <link rel="preload" href="./Research.gif" as="image"/>
-            <link rel="preload" href="./Production.gif" as="image"/>
-            <link rel="preload" href="./Projects.gif" as="image"/>
-            <link rel="preload" href="./Projects.gif" as="image"/>
+            <link rel="preload" href="/images/Research.gif" as="image"/>
+            <link rel="preload" href="/images/Production.gif" as="image"/>
+            <link rel="preload" href="/images/Projects.gif" as="image"/>
+            <link rel="preload" href="/images/Projects.gif" as="image"/>
           </Head>
           <MainNav />
           <InfoBar />

@@ -10,6 +10,9 @@
 
     // Position relative
     position: relative;
+
+    // Background image setting
+    background-size: cover;
 }
 
 // Styling the text
@@ -33,15 +36,18 @@
     position: absolute;
     transform-origin: -100% 50%;
     transform: translateX(-10vw) translateY(-5vw) skew(-5deg) scaleX(0.1);
+    display: flex;
+    flex-direction: column;
 }
 
 // set styles
 .caret {
     font-size: 25px;
     max-width: 10px;
-    transform: translateX(130px) translateY(7px);
     animation: blinker 1.5s linear infinite;
     opacity: 0;
+    align-self: center;
+    transform: translateX(-4px) translateY(-5px);
 }
 
 @keyframes blinker {

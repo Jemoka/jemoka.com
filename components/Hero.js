@@ -3,6 +3,8 @@ import { useSpring, animated } from "react-spring";
 
 import styles from "../styles/Hero.module.scss";
 
+import Head from "next/head";
+
 // This is an animated intro hero, which all pages use
 export default function Hero(props) {
     // check animated
@@ -51,16 +53,26 @@ export default function Hero(props) {
     }, [heroColored]);
 
     return (
-        <animated.div className={styles.hero} style={heroColor}>
-          <div className={styles.heroCenter}>
-            <div className={styles.heroCenterText+" "+styles.heroText}
-                 style={{color: props.color}}>&nbsp;{props.tab}&nbsp;</div>
-            <animated.div style={heroSlide}
-                          className={styles.heroBg+" "+styles.heroText}>&nbsp;{props.tab}&nbsp;
-              <animated.i className={styles.caret+" fa-solid fa-caret-down"} style={caretStyle}/>
-            </animated.div>
-          </div>
-        </animated.div>
+        <>
+          <animated.div className={styles.hero} style={heroColor}>
+
+            <div className={styles.heroCenter}>
+              <animated.div style={heroSlide}
+                            className={styles.heroBg+" "+styles.heroText}>&nbsp;{props.tab}&nbsp;
+                <animated.i className={styles.caret+" fa-solid fa-caret-down"} style={caretStyle}/>
+              </animated.div>
+              <div className={styles.heroCenterText+" "+styles.heroText}
+                   style={{color: props.color}}>&nbsp;{props.tab}&nbsp;</div>
+            </div>
+            {[...Array(10)].map((_, i)=>(<span key={i}>&nbsp;</span>))}
+          </animated.div>
+          <Head>
+            <link rel="preload" href="./Research.gif" as="image"/>
+            <link rel="preload" href="./Production.gif" as="image"/>
+            <link rel="preload" href="./Projects.gif" as="image"/>
+            <link rel="preload" href="./Projects.gif" as="image"/>
+          </Head>
+        </>
     );
 }
 
