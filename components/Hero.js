@@ -16,8 +16,8 @@ export default function Hero(props) {
     const heroSlide = useSpring({ backgroundColor: props.backgroundColor, // these two are the same because 
                                   color: props.backgroundColor,           // all we want to do is take up space
                                   transform: heroSlided ?
-                                  "translateX(-10vw) translateY(-5vw) skew(-5deg) scaleX(1)" :
-                                  "translateX(-10vw) translateY(-5vw) skew(-5deg) scaleX(0.1)"});
+                                  "skew(-5deg) scaleX(1)" :
+                                  "skew(-5deg) scaleX(0.1)"});
     const heroColor = useSpring({ backgroundColor: heroColored ?
                                   `${props.backgroundColor}` :
                                   "white"});
@@ -59,13 +59,13 @@ export default function Hero(props) {
             <div className={styles.heroCenter}>
               <animated.div style={heroSlide}
                             className={styles.heroBg+" "+styles.heroText}>&nbsp;{props.tab}&nbsp;
-                <animated.i className={styles.caret+" fa-solid fa-caret-down"} style={caretStyle}/>
+
               </animated.div>
               <div className={styles.heroCenterText+" "+styles.heroText}
                    style={{color: props.color}}>&nbsp;{props.tab}&nbsp;</div>
             </div>
-            {[...Array(10)].map((_, i)=>(<span key={i}>&nbsp;</span>))}
           </animated.div>
+          <animated.i className={styles.caret+" fa-solid fa-caret-down"} style={caretStyle}/>
         </>
     );
 }

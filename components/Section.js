@@ -30,7 +30,7 @@ export default function Section(props) {
     const delayBlur = Math.max(((getFrame-props.frameCount*0.7)/(props.frameCount-props.frameCount*0.7)), 0);
     const blurStyle = useSpring({
         backdropFilter: `blur(${40*delayBlur}px)`,
-        backgroundColor: `rgba(255,255,255, ${0.5*delayBlur})`,
+        backgroundColor: `rgba(255,255,255, ${0.6*delayBlur})`,
     });
 
     // Image fetch utility
@@ -124,8 +124,9 @@ export default function Section(props) {
                 </style>
                 <clipPath id={props.id}>
                   <text x="0" y="0">
-                    {props.name.split(" ").map(i =>
-                        <tspan x="0" dy="1em">{i}</tspan>)}
+                    {props.name.split(" ").map((i, indx) =>
+                        <tspan key={indx+props.id}
+                               x="0" dy="1em">{i}</tspan>)}
                   </text>
                 </clipPath>
               </svg>

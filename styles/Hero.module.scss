@@ -1,15 +1,12 @@
 .hero {
     // take up the whole screen
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh - env(safe-area-inset-bottom) + 1rem);
 
     // center child
     display: flex;
     justify-content: center;
     align-items: center;
-
-    // Position relative
-    position: relative;
 
     // Background image setting
     background-size: cover;
@@ -21,33 +18,45 @@
     font-size: max(4vw, 50px);
 }
 
+// center hero styles
+.heroCenter {
+    // Position grid
+    display: grid;
+}
+
 // And the actual text
 .heroCenterText {
     color: white;
-    position: absolute;
+    grid-column: 1;
+    grid-row: 1;
     z-index: 10;
-    transform: translateX(-10vw) translateY(-5vw) skew(-5deg);
+    transform: skew(-5deg);
 }
 
 // Styling the background animator
 .heroBg {
     background-color: var(--green);
     color: var(--green);
-    position: absolute;
+    grid-column: 1;
+    grid-row: 1;
     transform-origin: -100% 50%;
-    transform: translateX(-10vw) translateY(-5vw) skew(-5deg) scaleX(0.1);
+    transform: skew(-5deg);
     display: flex;
     flex-direction: column;
 }
 
 // set styles
 .caret {
-    font-size: 25px;
+    font-size: 20px;
     max-width: 10px;
     animation: blinker 1.5s linear infinite;
     opacity: 0;
     align-self: center;
-    transform: translateX(-4px) translateY(-5px);
+    position: absolute;
+    top: 60vh;
+    left: 48vw;
+    width: 20px;
+    height: 20px;
 }
 
 @keyframes blinker {
