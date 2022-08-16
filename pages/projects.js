@@ -9,7 +9,6 @@ export default function Projects() {
             id="condution"
             name="The Condution Project."
             position="Co-Founder, Core Developer"
-            variant="right"
             sequence="/sequences/Condution"
             frameCount={48}
           />

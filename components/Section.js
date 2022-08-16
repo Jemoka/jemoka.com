@@ -27,7 +27,7 @@ export default function Section(props) {
     // spring to blur, slight difference to make it act later
     const canvasStyle = useSpring({filter: `blur(${0.4*(getFrame/(props.frameCount*1.25))}em)`});
     // spring to blur text, shifted to make it blur much later
-    const delayBlur = Math.max(((getFrame-props.frameCount*0.5)/(props.frameCount-props.frameCount*0.5)), 0);
+    const delayBlur = Math.max(((getFrame-props.frameCount*0.7)/(props.frameCount-props.frameCount*0.7)), 0);
     const blurStyle = useSpring({
         backdropFilter: `blur(${40*delayBlur}px)`,
         backgroundColor: `rgba(255,255,255, ${0.5*delayBlur})`,
@@ -110,16 +110,23 @@ export default function Section(props) {
     
     return (
         <div className={styles.section}>
-          <div className={styles.content} style={{height, justifyContent: props.variant}}>
+          <div className={styles.content} style={{height}}>
             <div className={styles.sectionSub}>{props.position}</div>
             <animated.h1 className={styles.sectionCall}
-                style={{textAlign: props.variant,
-                        clipPath: `url(#${props.id})`,
+                style={{clipPath: `url(#${props.id})`,
                        ...blurStyle}}>
-              <div className={styles.hide}>{props.name}</div>
+              <div className={styles.hide}>
+                {props.name.split(" ").map(i =>
+                    <div x="0" dy="1em">{i}</div>)}
+              </div>
               <svg aria-hidden="true" className={styles.hide}>
+                <style>
+                </style>
                 <clipPath id={props.id}>
-                  <text dominantBaseline="hanging" textAnchor="middle" >{props.name}</text>
+                  <text x="0" y="0">
+                    {props.name.split(" ").map(i =>
+                        <tspan x="0" dy="1em">{i}</tspan>)}
+                  </text>
                 </clipPath>
               </svg>
 
