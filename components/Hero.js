@@ -66,12 +66,6 @@ export default function Hero(props) {
             </div>
             {[...Array(10)].map((_, i)=>(<span key={i}>&nbsp;</span>))}
           </animated.div>
-          <Head>
-            <link rel="preload" href="./Research.gif" as="image"/>
-            <link rel="preload" href="./Production.gif" as="image"/>
-            <link rel="preload" href="./Projects.gif" as="image"/>
-            <link rel="preload" href="./Projects.gif" as="image"/>
-          </Head>
         </>
     );
 }
