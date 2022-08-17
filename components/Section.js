@@ -13,8 +13,6 @@ function getPos(el) {
     return {x: lx,y: ly};
 }
 
-let ticker = 0;
-
 // This is a section on a page
 export default function Section(props) {
 
@@ -22,6 +20,8 @@ export default function Section(props) {
     const [getFrame, setFrame] = useState(1);
     // height of the image/frame
     const [height, setHeight] = useState(0);
+    // ticker to track status
+    const ticker = useRef(0);
 
     // ref to cavas
     const canvasRef = useRef(null);
@@ -70,15 +70,14 @@ export default function Section(props) {
         const img = new Image();
         img.src = currentFrame(F);
         // write down ticker
-        let currTicker = ticker;
+        let currTicker = ticker.current;
         // set!
         setFrame(F);
         // calculate scale-appropriate height
         img.onload = () => {
-            // if ticker is not what we expect, don't do anything.
-            if (currTicker < ticker) {return;}
+            if (currTicker < ticker.current) {return;}
             // update the ticker
-            ticker += 1;
+            ticker.current += 1;
             context.drawImage(img, 0, 0, img.width, Math.min((img.width/canvas.width)*canvas.height, img.height),
                               0, 0, canvas.width, canvas.height);
         };
