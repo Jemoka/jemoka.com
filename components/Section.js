@@ -13,6 +13,8 @@ function getPos(el) {
     return {x: lx,y: ly};
 }
 
+let ticker = 0;
+
 // This is a section on a page
 export default function Section(props) {
 
@@ -67,14 +69,19 @@ export default function Section(props) {
         // create image
         const img = new Image();
         img.src = currentFrame(F);
+        // write down ticker
+        let currTicker = ticker;
         // set!
         setFrame(F);
         // calculate scale-appropriate height
         img.onload = () => {
+            // if ticker is not what we expect, don't do anything.
+            if (currTicker < ticker) {return;}
+            // update the ticker
+            ticker += 1;
             context.drawImage(img, 0, 0, img.width, Math.min((img.width/canvas.width)*canvas.height, img.height),
                               0, 0, canvas.width, canvas.height);
         };
-
     };
 
     // seed canvas and preload images
@@ -90,11 +97,13 @@ export default function Section(props) {
         setHeight(canvas.offsetHeight);
 
         const preloadImages = () => {
-            for (let i = 1; i < frameCount; i++) {
+            for (let i = 1; i < props.frameCount; i++) {
                 const img = new Image();
                 img.src = currentFrame(i);
             }
         };
+
+        preloadImages();
     }, []);
 
     // scrollmagic
@@ -118,8 +127,8 @@ export default function Section(props) {
                 style={{clipPath: `url(#${props.id})`,
                        ...blurStyle}}>
               <div className={styles.hide}>
-                {props.name.split(" ").map(i =>
-                    <div x="0" dy="1em">{i}</div>)}
+                {props.name.split(" ").map((i,indx) =>
+                    <div x="0" dy="1em" key={indx}>{i}</div>)}
               </div>
               <svg aria-hidden="true" className={styles.hide}>
                 <style>
