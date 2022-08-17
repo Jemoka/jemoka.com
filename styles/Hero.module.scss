@@ -1,7 +1,7 @@
 .hero {
     // take up the whole screen
     width: 100vw;
-    height: calc(100vh - env(safe-area-inset-bottom) + 1rem);
+    height: calc(90vh - env(safe-area-inset-bottom) + 1rem);
 
     // center child
     display: flex;

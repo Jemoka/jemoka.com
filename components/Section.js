@@ -27,9 +27,9 @@ export default function Section(props) {
     // spring to blur, slight difference to make it act later
     // spring to blur text, shifted to make it blur much later
     const delayBlur = (by) => Math.max(((getFrame-props.frameCount*by)/(props.frameCount-props.frameCount*by)), 0);
-    const canvasStyle = useSpring({filter: `blur(${0.4*delayBlur(0.1)}em)`});
+    const canvasStyle = useSpring({filter: `blur(${0.3*delayBlur(0.3)}em)`});
     const blurStyle = useSpring({
-        backdropFilter: `blur(${40*delayBlur(0.6)}px)`,
+        backdropFilter: `blur(${100*delayBlur(0.6)}px)`,
         backgroundColor: `rgba(255,255,255, ${0.7*delayBlur(0.6)})`,
     });
     const subtitleStyle = useSpring({
@@ -42,6 +42,41 @@ export default function Section(props) {
         `${props.sequence}/thumb${index}.png`
     );
 
+    const scrollmagic = () => {
+        const canvas = canvasRef.current;
+        const context = canvas.getContext('2d');
+
+        // set height
+        setHeight(canvas.offsetHeight);
+
+        // Get the bottom of the doc
+        const elem = document.documentElement;
+        const scrollBottom = window.innerHeight+elem.scrollTop;
+        // Calculate how much is shown
+        // if nothing shown, its 0; if all of it has been shown, its
+        // the height
+        const shown = Math.min(Math.max(scrollBottom-getPos(canvas).y, 0),
+                               canvas.offsetHeight);
+        // calculate percentage shown
+        const scrollFraction = shown/canvas.offsetHeight;
+        // get frame
+        const F = (Math.min(
+            props.frameCount - 2,
+            Math.floor(scrollFraction * props.frameCount)
+        ))+1;
+        // create image
+        const img = new Image();
+        img.src = currentFrame(F);
+        // set!
+        setFrame(F);
+        // calculate scale-appropriate height
+        img.onload = () => {
+            context.drawImage(img, 0, 0, img.width, Math.min((img.width/canvas.width)*canvas.height, img.height),
+                              0, 0, canvas.width, canvas.height);
+        };
+
+    };
+
     // seed canvas and preload images
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -50,12 +85,7 @@ export default function Section(props) {
         canvas.width = window.screen.width;
         canvas.height = Math.min(window.screen.width*0.85, 800);
 
-        const img = new Image();
-        img.src = currentFrame(1);
-        img.onload = () => {
-            context.drawImage(img, 0, 0, img.width, Math.max(Math.min((img.width/canvas.width)*canvas.height, img.height)),
-                              0, 0, canvas.width, canvas.height);
-        };
+        scrollmagic();
 
         setHeight(canvas.offsetHeight);
 
@@ -69,39 +99,8 @@ export default function Section(props) {
 
     // scrollmagic
     useEffect(() => {
-        const canvas = canvasRef.current;
-        const context = canvas.getContext('2d');
-
         const onScroll = e => {
-            // set height
-            setHeight(canvas.offsetHeight);
-
-            // Get the bottom of the doc
-            const elem = document.documentElement;
-            const scrollBottom = window.innerHeight+elem.scrollTop;
-            // Calculate how much is shown
-            // if nothing shown, its 0; if all of it has been shown, its
-            // the height
-            const shown = Math.min(Math.max(scrollBottom-getPos(canvas).y, 0),
-                                   canvas.offsetHeight);
-            // calculate percentage shown
-            const scrollFraction = shown/canvas.offsetHeight;
-            // get frame
-            const F = (Math.min(
-                props.frameCount - 2,
-                Math.floor(scrollFraction * props.frameCount)
-            ))+1;
-            // create image
-            const img = new Image();
-            img.src = currentFrame(F);
-            // set!
-            setFrame(F);
-            // calculate scale-appropriate height
-            img.onload = () => {
-                context.drawImage(img, 0, 0, img.width, Math.min((img.width/canvas.width)*canvas.height, img.height),
-                                  0, 0, canvas.width, canvas.height);
-            };
-
+            scrollmagic();
         };
         window.addEventListener("scroll", onScroll);
         window.addEventListener("resize", onScroll);

@@ -65,12 +65,11 @@ export default function Hero(props) {
                    style={{color: props.color}}>&nbsp;{props.tab}&nbsp;</div>
             </div>
           </animated.div>
-          <animated.i className={styles.caret+" fa-solid fa-caret-down"} style={caretStyle} onClick={(e) => {
-              window.scroll({
-                  top: window.innerHeight*0.75,
-                  behavior: 'smooth'
-              });
-          }}/>
+          <div>
+            <div style={{color: props.backgroundColor}}>
+              I am a project callout.
+            </div>
+          </div>
         </>
     );
 }
