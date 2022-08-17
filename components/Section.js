@@ -25,13 +25,17 @@ export default function Section(props) {
     const canvasRef = useRef(null);
 
     // spring to blur, slight difference to make it act later
-    const canvasStyle = useSpring({filter: `blur(${0.4*(getFrame/(props.frameCount*1.25))}em)`});
     // spring to blur text, shifted to make it blur much later
-    const delayBlur = Math.max(((getFrame-props.frameCount*0.7)/(props.frameCount-props.frameCount*0.7)), 0);
+    const delayBlur = (by) => Math.max(((getFrame-props.frameCount*by)/(props.frameCount-props.frameCount*by)), 0);
+    const canvasStyle = useSpring({filter: `blur(${0.4*delayBlur(0.1)}em)`});
     const blurStyle = useSpring({
-        backdropFilter: `blur(${40*delayBlur}px)`,
-        backgroundColor: `rgba(255,255,255, ${0.6*delayBlur})`,
+        backdropFilter: `blur(${40*delayBlur(0.6)}px)`,
+        backgroundColor: `rgba(255,255,255, ${0.7*delayBlur(0.6)})`,
     });
+    const subtitleStyle = useSpring({
+        opacity: 1.4*delayBlur(0.95),
+    });
+
 
     // Image fetch utility
     const currentFrame = index => (
@@ -111,7 +115,6 @@ export default function Section(props) {
     return (
         <div className={styles.section}>
           <div className={styles.content} style={{height}}>
-            <div className={styles.sectionSub}>{props.position}</div>
             <animated.h1 className={styles.sectionCall}
                 style={{clipPath: `url(#${props.id})`,
                        ...blurStyle}}>
@@ -132,6 +135,9 @@ export default function Section(props) {
               </svg>
 
             </animated.h1>
+            <animated.div className={styles.sectionSub}
+                 style={{color: props.color,
+                         ...subtitleStyle}}>{props.position}</animated.div>
           </div>
           <animated.canvas ref={canvasRef} className={styles.canvas} style={canvasStyle}/>
         </div>

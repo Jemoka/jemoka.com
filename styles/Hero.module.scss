@@ -47,6 +47,7 @@
 
 // set styles
 .caret {
+    cursor: pointer;
     font-size: 20px;
     max-width: 10px;
     animation: blinker 1.5s linear infinite;
