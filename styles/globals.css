@@ -94,3 +94,14 @@ a {
     color: #454545;
 }
 
+.link {
+    border-bottom: solid 1px #eaedad;
+    transition: border-width 0.4s;
+}
+
+
+.link:hover {
+    border-bottom: solid 4px #eaedad;
+}
+
+

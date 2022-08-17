@@ -35,7 +35,7 @@ export default function Section(props) {
         backgroundColor: `rgba(255,255,255, ${0.7*delayBlur(0.6)})`,
     });
     const subtitleStyle = useSpring({
-        opacity: 1.4*delayBlur(0.95),
+        opacity: 1.4*delayBlur(0.9),
     });
 
 

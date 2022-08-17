@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { useSpring, animated } from "react-spring";
 
-import styles from "../styles/Hero.module.scss";
+import styles from "../styles/Page.module.scss";
 
 import Head from "next/head";
 
 // This is an animated intro hero, which all pages use
-export default function Hero(props) {
+export default function Page(props) {
     // check animated
     const [heroSlided, setHeroSlide] = useState(false);
-    const [heroShown, setHeroShown] = useState(true);
+    const [heroShown, setHeroShown] = useState(false);
     const [heroColored, setHeroColored] = useState(false);
     const [caretShown, setCaretShown] = useState(false);
     // create a spring to animate slide in
@@ -23,6 +23,8 @@ export default function Hero(props) {
                                   "white"});
     const caretStyle = useSpring({ display: caretShown ? "block" : "none",
                                    color: props.color });
+    const bodyStyle = useSpring({ opacity: heroShown ? 1 : 0});
+
 
     // On render, animate
     useEffect(() => {
@@ -34,23 +36,16 @@ export default function Hero(props) {
         // if we have slid
         if (heroSlided)
             // we wait a second and fade background in and fade box out
+            // and we wait another to fade the content in
             setTimeout(() => {
-                setHeroShown(false);
                 setHeroColored(true);
+                setCaretShown(true);
+                setTimeout(() => {
+                    setHeroShown(true);
+                }, 700);
             }, 700);
         
     }, [heroSlided]);
-
-    // after everything, show caret
-    useEffect(() => {
-        // if we have slid
-        if (heroColored)
-            // we wait a second and fade background in and fade box out
-            setTimeout(() => {
-                setCaretShown(true);
-            }, 500);
-        
-    }, [heroColored]);
 
     return (
         <>
@@ -71,11 +66,14 @@ export default function Hero(props) {
                   behavior: 'smooth'
               });
           }}/>
-          <div>
-            <div style={{color: props.backgroundColor}}>
-              I am a project callout.
+          <animated.div
+            style={bodyStyle}>
+            <div className={styles.callout}>
+              <p style={{fontWeight: 600}}>{props.calloutA}</p>
+              <p style={{fontWeight: 500}}>{props.calloutB}</p>
             </div>
-          </div>
+            {props.children}
+          </animated.div>
         </>
     );
 }
