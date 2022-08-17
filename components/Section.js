@@ -1,6 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 import { useSpring, animated } from "react-spring";
 
+import Router from 'next/router';
+
 import styles from "../styles/Section.module.scss";
 
 // Utility to add offsets
@@ -32,7 +34,7 @@ export default function Section(props) {
     const canvasStyle = useSpring({filter: `blur(${0.3*delayBlur(0.3)}em)`});
     const blurStyle = useSpring({
         backdropFilter: `blur(${100*delayBlur(0.6)}px)`,
-        backgroundColor: `rgba(255,255,255, ${0.7*delayBlur(0.6)})`,
+        backgroundColor: `rgba(${props.titleColorHint}, ${0.7*delayBlur(0.6)})`,
     });
     const subtitleStyle = useSpring({
         opacity: 1.4*delayBlur(0.9),
@@ -120,13 +122,13 @@ export default function Section(props) {
     }, [getFrame]);
     
     return (
-        <div className={styles.section}>
+        <div className={styles.section} onClick={()=>Router.push(props.url)}>
           <div className={styles.content} style={{height}}>
             <animated.h1 className={styles.sectionCall}
                 style={{clipPath: `url(#${props.id})`,
                        ...blurStyle}}>
               <div className={styles.hide}>
-                {props.name.split(" ").map((i,indx) =>
+                {props.title.split(" ").map((i,indx) =>
                     <div x="0" dy="1em" key={indx}>{i}</div>)}
               </div>
               <svg aria-hidden="true" className={styles.hide}>
@@ -134,7 +136,7 @@ export default function Section(props) {
                 </style>
                 <clipPath id={props.id}>
                   <text x="0" y="0">
-                    {props.name.split(" ").map((i, indx) =>
+                    {props.title.split(" ").map((i, indx) =>
                         <tspan key={indx+props.id}
                                x="0" dy="1em">{i}</tspan>)}
                   </text>
@@ -143,8 +145,14 @@ export default function Section(props) {
 
             </animated.h1>
             <animated.div className={styles.sectionSub}
-                 style={{color: props.color,
-                         ...subtitleStyle}}>{props.position}</animated.div>
+                          style={{...subtitleStyle}}>
+              <div style={{color: props.subtitleColor}}>
+                  {props.subtitle}
+              </div>
+              <div style={{color: props.positionColor}}>
+                  {props.position}
+              </div>
+            </animated.div>
           </div>
           <animated.canvas ref={canvasRef} className={styles.canvas} style={canvasStyle}/>
         </div>
