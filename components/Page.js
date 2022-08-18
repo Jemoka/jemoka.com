@@ -28,6 +28,7 @@ export default function Page(props) {
 
     // On render, animate
     useEffect(() => {
+        window.scrollTo(0, 0);
         setHeroSlide(true);
     }, []);
 

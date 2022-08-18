@@ -91,7 +91,7 @@ export default function Section(props) {
         const context = canvas.getContext('2d');
 
         canvas.width = window.screen.width;
-        canvas.height = Math.min(window.screen.width*0.85, 800);
+        canvas.height = Math.min(window.screen.width*0.85, 900);
 
         scrollmagic();
 
