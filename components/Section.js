@@ -43,7 +43,7 @@ export default function Section(props) {
 
     // Image fetch utility
     const currentFrame = index => (
-        `${props.sequence}/thumb${index}.png`
+        `${props.sequence}/thumb${index}.jpg`
     );
 
     const scrollmagic = () => {
