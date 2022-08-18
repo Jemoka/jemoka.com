@@ -97,7 +97,7 @@ export default function Page(props) {
                 <a href="https://www.reddit.com/user/Jemoka/" className="header-social" id="header-reddit"><i className="ic fa-brands fa-reddit" /></a>
               </div>
               <div>
-                <a href="/projects" className="link" style={{borderColor: "var(--green)"}}>Projects</a> / &nbsp;
+                <a onClick={()=>Router.push("/")} className="link" style={{borderColor: "var(--green)"}}>Projects</a> / &nbsp;
                 <a href="https://www.jemoka.com/posts/kbhresearch_index/" className="link" style={{borderColor: "var(--blue)"}}>Research</a> / &nbsp;
                 <a href="https://www.jemoka.com/posts/kbhproduction_index/" className="link" style={{borderColor: "var(--red)"}}>Production</a> / &nbsp;
                 <a href="https://www.jemoka.com/posts/kbhindex/" className="link" style={{borderColor: "var(--yellow)"}}>About</a>
