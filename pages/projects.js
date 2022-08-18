@@ -10,7 +10,7 @@ export default function Projects() {
                 color="white"
                 backgroundColor="var(--green)"
                 calloutA="Hello there! Thanks for stopping by."
-                calloutB={<>Here is a list of some of the projects that I've been working on. It's by no means complete, but it gives you a sense of some of the stuff I enjoy doing. If you'd like, <a href="https://www.jemoka.com/posts/kbhprojects/" className="link">here's a laundry-list</a> of every piece of code that I had spend more than a day writing—but its organized in a much more technical way. <br /> If anything catches your attention while reading, feel free to give it a click!</>}>
+                calloutB={<>Here are some of the projects that I've been working on. It's by no means complete, but it gives you a sense of some of the stuff I enjoy doing. If you'd like, <a href="https://www.jemoka.com/posts/kbhprojects/" className="link">this is a laundry-list</a> of every piece of code that I had spend more than a day writing—but its organized in a much more technical way. <br /> If anything catches your attention while reading, feel free to give it a click!</>}>
             <Section
               id="condution"
               title="The Condution Project"

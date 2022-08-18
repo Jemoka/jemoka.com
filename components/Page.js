@@ -5,6 +5,8 @@ import styles from "../styles/Page.module.scss";
 
 import Head from "next/head";
 
+import Router from 'next/router';
+
 // This is an animated intro hero, which all pages use
 export default function Page(props) {
     // check animated
@@ -28,7 +30,7 @@ export default function Page(props) {
 
     // On render, animate
     useEffect(() => {
-        window.scrollTo(0, 0);
+        // window.scrollTo(0, 0);
         setHeroSlide(true);
     }, []);
 
@@ -51,7 +53,13 @@ export default function Page(props) {
     return (
         <>
           <animated.div className={styles.hero} style={heroColor}>
-
+            <div className={styles.header} onClick={()=>Router.push("/")}>
+              <span id="uname">jemoka.com</span>
+              <br />
+              <span>
+                <span id="name" className="font-bold">Houjun Liu</span>
+              </span>
+            </div>
             <div className={styles.heroCenter}>
               <animated.div style={heroSlide}
                             className={styles.heroBg+" "+styles.heroText}>&nbsp;{props.tab}&nbsp;
@@ -75,6 +83,27 @@ export default function Page(props) {
             </div>
             {props.children}
           </animated.div>
+          <div className={styles.bottom}
+               style={{backgroundColor: props.backgroundColor,
+                       color: props.color}}>
+            <div>
+              🙌&nbsp;&nbsp;<span className="font-bold">Thanks for visiting!</span>
+              &nbsp;
+              <div id="socialpanel" style={{transform: "scale(0.9) translateY(3px)"}}>
+                <a href="https://www.jemoka.com/search/" style={{borderRight: 0, marginRight: 0, paddingRight: 0}}
+                   className="header-social" id="header-search"><i className="ic fa-solid fa-magnifying-glass" /></a>
+                <a href="https://github.com/Jemoka/" className="header-social" id="header-github"><i className="ic fa-brands fa-github" /></a>
+                <a href="https://twitter.com/jemokajack" className="header-social" id="header-twitter"><i className="ic fa-brands fa-twitter" /></a>
+                <a href="https://www.reddit.com/user/Jemoka/" className="header-social" id="header-reddit"><i className="ic fa-brands fa-reddit" /></a>
+              </div>
+              <div>
+                <a href="/projects" className="link" style={{borderColor: "var(--green)"}}>Projects</a> / &nbsp;
+                <a href="https://www.jemoka.com/posts/kbhresearch_index/" className="link" style={{borderColor: "var(--blue)"}}>Research</a> / &nbsp;
+                <a href="https://www.jemoka.com/posts/kbhproduction_index/" className="link" style={{borderColor: "var(--red)"}}>Production</a> / &nbsp;
+                <a href="https://www.jemoka.com/posts/kbhindex/" className="link" style={{borderColor: "var(--yellow)"}}>About</a>
+              </div>
+            </div>
+          </div>
         </>
     );
 }
