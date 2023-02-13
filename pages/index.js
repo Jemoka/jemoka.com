@@ -37,7 +37,7 @@ function MainNav() {
                          onMouseLeave={() => psAPI.start({width: "25vw", height: "25vh", mixBlendMode:"normal"})}
                          onClick={()=> {
                              psAPI.start({width: "1000vw", height: "400vh"});
-                             Router.push("/projects");
+                             Router.push("https://www.jemoka.com/posts/kbhprojects/");
                          }}><animated.a style={{mixBlendMode: ps.mixBlendMode}}>Projects</animated.a></animated.span>
 
           <animated.span className={styles.navbaritem} id={styles.research} style={rs}
