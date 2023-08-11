@@ -15,7 +15,7 @@ function InfoBar() {
           <div id="socialpanel">
             <a href="https://www.jemoka.com/search/" className="header-social" id="header-search"><i className="ic fa-solid fa-magnifying-glass" /></a>
             <a href="https://github.com/Jemoka/" className="header-social" id="header-github"><i className="ic fa-brands fa-github" /></a>
-            <a href="https://twitter.com/jemokajack" className="header-social" id="header-twitter"><i className="ic fa-brands fa-twitter" /></a>
+            <a href="https://maly.io/@jemoka" className="header-social" id="header-twitter"><i className="ic fa-brands fa-mastodon" /></a>
             <a href="https://www.reddit.com/user/Jemoka/" className="header-social" id="header-reddit"><i className="ic fa-brands fa-reddit" /></a>
           </div>
         </div>
